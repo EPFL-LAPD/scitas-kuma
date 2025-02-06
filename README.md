@@ -1,7 +1,7 @@
 # SCITAS Kuma User Guide
 
-This guide explains how to use the **SCITAS Kuma GPU cluster** [(Spec)](https://scitas-doc.epfl.ch/supercomputers/kuma/) with:  
-- Python & [micromamba](https://mamba.readthedocs.io/en/latest/index.html) (faster alternative for conda)  
+This guide explains how to use the **SCITAS Kuma GPU cluster** ([Spec](https://scitas-doc.epfl.ch/supercomputers/kuma/)) with:  
+- Python & [Micromamba](https://mamba.readthedocs.io/en/latest/index.html) (faster alternative for conda)  
 - VS code Remote Window
 - PyTorch + CUDA  
 
@@ -212,7 +212,7 @@ Use interactive sessions for testing/debugging:
    Sinteract -p h100 -q debug -m 4G -g gpu:1 -t 0-00:10:00
    ```
    - `-p h100` (Use H100 GPU) or `-p l40s` (Use L40S GPU)
-   - `-q debug` (Max 1 hour, free of charge) or `-q normal` or `-q long`
+   - `-q debug` (free but 1 hour max) or `-q normal` or `-q long`  # See [QOS detail](https://scitas-doc.epfl.ch/user-guide/using-clusters/slurm-qos-partitions/#kuma-the-gpu-cluster) and [Kuma Pricing & QOS](https://scitas-doc.epfl.ch/blog/2024/10/17/kuma-cluster-full-production--pricing--nov-1st/).  
    - `-m 4G` (4 GB RAM)  
    - `-g gpu:1` (1 GPU) or `-g gpu:2` (2 GPUs)
    - `-t 0-00:30:00` (Time duration format: `D-HH:MM:SS`)
