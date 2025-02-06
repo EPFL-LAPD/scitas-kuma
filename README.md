@@ -39,7 +39,7 @@ Ensure you are on the **EPFL network** or connected via **VPN** to access Kuma.
 <img src="https://i.imgur.com/59m2486.png" width=70%>
 
 ## 4. File System on Kuma
-Kuma has different storage locations:
+Kuma has different [storage locations](https://scitas-doc.epfl.ch/storage/file-system/):
 
 ### **Home Directory (`/home/<username>`)**
 - Limited to **100 GB per user**.
@@ -58,7 +58,7 @@ Kuma has different storage locations:
 - **Files older than 30 days are automatically deleted**.
 
 ## 5. Install Micromamba & Python
-Micromamba is a fast alternative to Conda. Follow these steps to install it in your `scratch` directory:
+[Micromamba](https://mamba.readthedocs.io/en/latest/index.html) is a fast alternative to Conda. Follow these steps to install it in your `scratch` directory:
 
 1. Install Micromamba:
    ```sh
@@ -86,9 +86,9 @@ Micromamba is a fast alternative to Conda. Follow these steps to install it in y
    ```
 
 4. Install packages:  
-   [SCITAS Lmod tool](https://scitas-doc.epfl.ch/user-guide/using-clusters/software-stack/#modules-and-lmod)  
-   [uv](https://astral.sh/blog/uv)  
-   [PyTorch](https://pytorch.org/get-started/locally/)
+   - [SCITAS Lmod tool](https://scitas-doc.epfl.ch/user-guide/using-clusters/software-stack/#modules-and-lmod)  Tool for managing scientific software.  
+   - [uv](https://astral.sh/blog/uv)  Extremely fast. Leo prefer `uv pip install` over `pip install`, `conda install`, `micromaba install`.  
+   - [PyTorch](https://pytorch.org/get-started/locally/)  Use the PyTorch that match the CDUA on Kuma.  
    ```sh
    pip install uv  # an extremely fast Python package installer
    module load gcc/13.2.0 cuda/12.4.1  # SCITAS Lmod tool
@@ -154,7 +154,7 @@ https://github.com/user-attachments/assets/ef5d3385-f6e8-4b45-a39f-1c43203c9745
 
 
 ## 7. Set Up Passwordless SSH
-This is required because we need ProxyJump to GPU node later.  
+**This is required** because we need ProxyJump to GPU node later.  
 1. Open **PowerShell** (Windows) or **Terminal** (Linux/macOS).
 2. Generate an SSH key pair in your local computer:  
    - Both Linux/macOS and Windows PowerShell  
