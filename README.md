@@ -26,8 +26,8 @@ Ensure you are on the **EPFL network** or connected via **VPN** to access Kuma.
 1. Visit [EPFL Groups](https://groups.epfl.ch)
 2. Search for `hpc-lapd`.
 3. If you are not a member, contact the administrators.  
-<img src="https://i.imgur.com/ql1qCc4.png" width=60%>  
-<img src="https://i.imgur.com/OdVTrx0.png" width=60%>
+<img src="https://i.imgur.com/ql1qCc4.png" width=50%>  
+<img src="https://i.imgur.com/OdVTrx0.png" width=50%>
 
 
 ## 3. SSH Access to Kuma
@@ -36,7 +36,7 @@ Ensure you are on the **EPFL network** or connected via **VPN** to access Kuma.
    - Example for Leo Jih-Liang Hsieh: `ssh jlhsieh@kuma.hpc.epfl.ch`
 3. Enter your password (characters will not be displayed as you type).
 4. You are now in the Kuma frontend (`kuma1` or `kuma2`), but GPU access is not yet available.  
-<img src="https://i.imgur.com/59m2486.png" width=80%>
+<img src="https://i.imgur.com/59m2486.png" width=70%>
 
 ## 4. File System on Kuma
 Kuma has different storage locations:
@@ -97,7 +97,7 @@ Micromamba is a fast alternative to Conda. Follow these steps to install it in y
    uv pip install torch torchvision torchaudio  # Check PyTorch website to match CDUA version if needed
    uv pip install ipykernel  # For Jupyter
    ```  
-    <img src="https://i.imgur.com/f9bqmyc.png" width=80%>  
+    <img src="https://i.imgur.com/b3M5UyW.png" width=60%>  
 
 
 ## 6. Set Up VS Code and run PyTorch (no GPU yet)
@@ -107,12 +107,13 @@ Micromamba is a fast alternative to Conda. Follow these steps to install it in y
 4. Enter: `ssh <username>@kuma.hpc.epfl.ch`.
 5. Choose the current user SSH configuration file.  
 (Example: `/home/leohsieh/.ssh/config` or `C:\Users\leohsieh\.ssh\config`)
-6. Rename the `Host` in SSH config file
-7. Connect VS code to Remote Host  
-<img src="https://i.imgur.com/sRV8YoH.gif" width=100%>
+6. Rename the `Host` in SSH config file.  
+7. Connect VS code to Remote Host.  
 
-9. Open `/scratch/<username>` folder in VS Code.
-10. Create and test a Python script (`test.py`) to check PyTorch.  
+https://github.com/user-attachments/assets/44657123-58f3-4fba-a89f-e4254a20f454
+
+8. Open `/scratch/<username>` folder in VS Code.  
+9. Create and test a Python script (`test.py`) to check PyTorch.  
 ```python
     # %% test.py
     import torch
@@ -138,17 +139,22 @@ Micromamba is a fast alternative to Conda. Follow these steps to install it in y
             print("CUDA is NOT available")
 
     check_gpu()
-```  
-<img src="https://i.imgur.com/KeCRqAy.gif" width=100%>  
+```
+
+https://github.com/user-attachments/assets/ef5d3385-f6e8-4b45-a39f-1c43203c9745
+
 
 10. If your Python interpreter in Micromamba is not detected, enter the Python path manually.  
    Example: `/scratch/jlhsieh/micromamba/envs/my_env/bin/python`  
 11. Try running `test.py`. You should see `PyTorch version: 2.6.0+cu124`.  
-   - (No GPU access yet. You'll see `CUDA is NOT available`).  
-   <img src="https://i.imgur.com/BKWiotU.gif" width=100%>
+   - (No GPU access yet. You'll see `CUDA is NOT available`).
+
+   https://github.com/user-attachments/assets/e948b0a3-20e0-4455-aa1e-9e92d43a8bdf
+
 
 
 ## 7. Set Up Passwordless SSH
+This is required because we need ProxyJump to GPU node later.  
 1. Open **PowerShell** (Windows) or **Terminal** (Linux/macOS).
 2. Generate an SSH key pair in your local computer:  
    - Both Linux/macOS and Windows PowerShell  
@@ -167,7 +173,7 @@ Micromamba is a fast alternative to Conda. Follow these steps to install it in y
       type $HOME\.ssh\my_ssh_key.pub | ssh <username>@kuma.hpc.epfl.ch "mkdir -p .ssh && tee -a .ssh/authorized_keys"
       ```
 
-4. Modify the SSH config file:
+4. Modify the SSH config file as:
    ```
    Host my-kuma-frontend
      HostName kuma.hpc.epfl.ch
@@ -182,7 +188,7 @@ Micromamba is a fast alternative to Conda. Follow these steps to install it in y
      IdentitiesOnly yes
      ProxyJump my-kuma-frontend
    ```  
-   <img src="https://i.imgur.com/hXFheou.png" width=80%>  
+   <img src="https://i.imgur.com/hXFheou.png" width=50%>  
 
 5. Test the connection without password:
    ```sh
@@ -215,9 +221,12 @@ Use interactive sessions for testing/debugging:
 3. A Kuma GPU node will be assigned (Example: `kh029`).  
    <img src="https://i.imgur.com/4Qw2bGY.png" width=80%>  
 
-4. Modify the SSH config accordingly, connect to the GPU node in VS Code, and start using the GPU.
-   <img src="https://i.imgur.com/1aBn2cO.gif" width=100%>  
+4. Modify the SSH config accordingly, connect to the GPU node in VS Code, and start using the GPU.  
+   https://github.com/user-attachments/assets/30150cce-c39e-49b3-9236-986e57b2fcc7
    - The GPU node will close when the time is up or when the Terminal/PowerShell is closed.
+
+
+
 
 
 ## 9. Running Jobs with GPU on Kuma
@@ -237,7 +246,7 @@ For long-running jobs, submit batch scripts instead of using interactive mode. T
    echo "==== Start job ==================================="
    module load gcc/13.2.0 cuda/12.4.1
    micromamba run -n my_env python /scratch/jlhsieh/test.py
-   echo "sellp 10 seconds"
+   echo "sleep 10 seconds"
    sleep 10
    micromamba run -n my_env python /scratch/jlhsieh/test.py
    echo "==== End job====================================="
@@ -253,12 +262,13 @@ For long-running jobs, submit batch scripts instead of using interactive mode. T
    ```sh
    Squeue
    ```  
-   <img src="https://i.imgur.com/jaJXD3G.gif" width=100%>  
+   https://github.com/user-attachments/assets/5dc3ef84-ce4c-4eb4-ae77-f50414e109a8
+
 
 5. You can overwrite job parameters when submitting:
    ```sh
-   sbatch --partition=l40s --qos normal --mem=8G --gpus=2 --time=0-00:05:00 myjob.run
+   sbatch --partition=l40s --qos normal --mem=8G --gpus=2 --time=0-00:05:00 myjob.run  # parameters in `myjob.run` will be overwritten
    ```
 
-6. Now your job runs independently, even after you disconnect from Kuma.
+6. Now your job runs independently, even after you **disconnect from Kuma**.
 
